@@ -396,6 +396,7 @@ function saveHighScore(username, score, difficulty, category) {
 
 function restartGame() {
     currentQuestionIndex = 0;
+    username = gameSettings.username;
     score = 0;
     lives = 3;
     gameOver = false;
@@ -410,7 +411,7 @@ function returnToMenu() {
     settingsUI.style.display = "block";
     
     // Reset form
-    document.getElementById('username').value = '';
+    document.getElementById('username').value = stringify(gameSettings.username);
     document.getElementById('category').value = '9';
     document.getElementById('difficulty').value = 'easy';
     document.getElementById('questionCount').value = '5';
