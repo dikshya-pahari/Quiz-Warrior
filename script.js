@@ -68,7 +68,7 @@ okBtn.addEventListener('click', function(){
 
 function startQuiz(settings){
     console.log(settings)
-                    //  https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple
+    // https://opentdb.com/api.php?amount=15&category=27&difficulty=medium&type=multiple
     const apiUrl = (`https://opentdb.com/api.php?amount=${settings.qnCount}&category=${settings.category}&difficulty=${settings.difficulty.toLowerCase()}&type=multiple`)
     console.log(apiUrl)
     // gameSettings = settings;
