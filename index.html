@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="nav-bar">
+        <a class="nav-left" href="index.html">
+            <img width="32" height="32" src="https://img.icons8.com/pixels/32/home--v2.png" alt="home--v2"/>
+        </a>
+        <div class="nav-right">
+            <a href="about.html" class="nav-right-btn">About</a>
+        </div>
+    </div>
+
+    <div class="settingsUI">
+        <!-- Front Interface  -->
+        <div class="container">
+            <h1 class="title">Quiz Warrior </h1>
+            <h1 class="weapon-icon">⚔️</h1>
+            <div class="options">
+                <button class="btn" id="startGame">Start Game</button>
+                <!-- <a class="btn" href="highscores.html">High Scores</a> -->
+            </div>
+        </div>
+
+        <!-- Retro Window for settings -->
+        <div class="retro-window">
+               <div class="dialogue-header">
+                   <h4>Settings</h4>
+                   <a href="index.html"><img class="close-icon" width="32" height="32" src="https://img.icons8.com/ios-filled/50/delete-sign--v1.png"/></a>
+               </div>
+               <div id="game" class="questions">
+                   <p id="username-qn"> What is your warrior name? </p>
+                   <input type="text" id="username" placeholder="Enter your username here.">
+                   <p id="level-categories">Choose your categories:</p>
+                    <select id="category">
+                        <option value="9">General Knowledge</option>
+                        <option value="10">Books</option>
+                        <option value="11">Films</option>
+                        <option value="12">Music</option>
+                        <option value="13">Musicals & Theaters</option>
+                        <option value="14">Television</option>
+                        <option value="15">Video Games</option>
+                        <option value="16">Board Games</option>
+                        <option value="17">Science & Nature</option>
+                        <option value="18">Computer Science</option>
+                        <option value="19">Mathematics</option>
+                        <option value="20">Mythology</option>
+                        <option value="21">Sports</option>
+                        <option value="22">Geography</option>
+                        <option value="23">History</option>
+                        <option value="24">Politics</option>
+                        <option value="25">Arts</option>
+                        <option value="26">Celebrities</option>
+                        <option value="27">Animals</option>
+                        <option value="28">Vehicles</option>
+                        <option value="29">Comics</option>
+                        <option value="20">Gadgets</option>
+                        <option value="31">Japanese Anime & Manga</option>
+                        <option value="32">Cartoon & Animations</option>
+                    </select>
+                   <p id="level-qn">Choose your difficulty:</p>
+                    <select id="difficulty">
+                        <option value="easy">🟢 Easy (Apprentice)</option>
+                        <option value="medium">🟡 Medium (Knight)</option>
+                        <option value="hard">🔴 Hard (Slayer)</option>
+                    </select>
+                    <p>How many questions?</p>
+                    <select id="questionCount">
+                        <option value="5">5 questions</option>
+                        <option value="10">10 questions</option>
+                        <option value="15">15 questions</option>
+                        <option value="15">20 questions</option>
+                        <option value="15">25 questions</option>
+                    </select>
+                    <br>
+                    <button class="ok-btn">Ok</button>
+               </div>
+        </div>
+    </div>
+
+    <!-- Alert message -->
+     <div class="alert-msg">
+        <h4>Alert</h4>
+        <p>This is alert msg</p>
+        <button>Close❌</button>
+     </div>
+
+     <!-- GAME INTERFACE -->
+    <div class="game">
+        <!-- Header -->
+        <div class="game-header">
+            <div class="stats-display">
+                <span class="stat" id="stat-username">👤 ${gameSettings.username}</span>
+                <span class="stat" id="stat-lives">⚔️ Lives: ${lives}</span>
+                <span class="stat" id="stat-score">🏆 Score: ${score}</span>
+                <span class="stat" id="stat-Time-remaining">⏰ Time: <span id="timer-display">${timeRemaining}</span></span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" ></div>
+                <span class="progress-text">Question 1 of 5</span>
+            </div>
+        </div>
+
+        <!-- Questions -->
+        <div class="question-display">
+            <h2 class="question-text"></h2>
+            <div class="answers-grid"></div>
+        </div>
+
+        <!-- Options -->
+        <div class="game-controls">
+        </div>
+
+        <a id="abort" href="index.html">Abort</a>
+    </div>
+
+    <!-- Game End Interface -->
+    <div class="game-end"></div>
+    <div class="game-end" id="showHighScore"></div>
+
+
+
+</body>
+</html>

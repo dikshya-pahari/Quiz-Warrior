@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    
+    :root {
+        font-size: 62.5%;
+        --primary-color: #eda2a2;
+        --secondary-color: #b084dd;
+        --accent-color: #ffc671;
+        --text-light: #e5e7eb;
+        --text-dark: #1f2937;
+        --success-color: #10b981;
+        --warning-color: #f5c97d;
+        --error-color: #ef4444;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Press Start 2P", system-ui, monospace;
+    }
+    
+    body {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        min-height: 100vh;
+        color: var(--text-light);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    
+    /* Navigation */
+    .nav-bar {
+        margin: 2rem 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .nav-left {
+        padding: 1rem;
+        background-color: #e0e0e0;
+        color: rgb(33, 33, 33);
+        border: 2px solid rgb(41, 40, 40);
+        box-shadow: 4px 4px 0px rgb(47, 47, 47);
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.2rem;
+    }
+    
+    .nav-left:hover {
+        transform: scale(1.1);
+        box-shadow: 6px 6px 0px rgb(47, 47, 47);
+    }
+    
+    .nav-title {
+        font-size: 2rem;
+        color: var(--accent-color);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    /* Main Container */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    
+    /* Header Section */
+    .header {
+        text-align: center;
+        margin-bottom: 5rem;
+        animation: fadeInDown 1s ease-out;
+    }
+    
+    .title {
+        font-size: 4rem;
+        color: var(--accent-color);
+        margin-bottom: 2rem;
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    }
+    
+    .subtitle {
+        font-size: 1.5rem;
+        color: var(--text-light);
+        opacity: 0.8;
+    }
+    
+    /* Content Sections */
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 5rem;
+    }
+    
+    .content-card {
+        background: rgba(0, 0, 0, 0.7);
+        border: 2px solid var(--accent-color);
+        border-radius: 1.5rem;
+        padding: 3rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 1s ease-out;
+    }
+    
+    .content-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(251, 191, 36, 0.2);
+    }
+    
+    .card-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--accent-color);
+    }
+    
+    .card-icon {
+        font-size: 3rem;
+        margin-right: 1.5rem;
+        /* animation: bounce 2s infinite; */
+    }
+    
+    .card-title {
+        font-size: 2rem;
+        color: var(--accent-color);
+    }
+    
+    .card-content {
+        font-size: 1.2rem;
+        line-height: 2;
+    }
+    
+    .card-content h3 {
+        color: var(--success-color);
+        margin: 2rem 0 1rem 0;
+        font-size: 1.4rem;
+    }
+    
+    .card-content ul {
+        list-style: none;
+        margin: 1rem 0;
+    }
+    
+    .card-content li {
+        margin: 1rem 0;
+        padding-left: 2rem;
+        position: relative;
+    }
+    
+    .card-content li:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    
+    /* Power-ups Section */
+    .powerups-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+    
+    .powerup-card {
+        background: linear-gradient(135deg, var(--warning-color), #d97706);
+        border: 2px solid #92400e;
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        color: white;
+        animation: pulse 3s infinite;
+    }
+    
+    .powerup-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+    }
+    
+    .powerup-name {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .powerup-description {
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+    
+    /* Scoring Table */
+    .scoring-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+    
+    .scoring-table th,
+    .scoring-table td {
+        padding: 1.5rem;
+        text-align: center;
+        border-bottom: 1px solid var(--accent-color);
+    }
+    
+    .scoring-table th {
+        background: var(--accent-color);
+        color: var(--text-dark);
+        font-size: 1.2rem;
+    }
+    
+    .scoring-table td {
+        font-size: 1.1rem;
+    }
+    
+    .difficulty-easy { color: var(--success-color); }
+    .difficulty-medium { color: var(--warning-color); }
+    .difficulty-hard { color: var(--error-color); }
+    
+    /* Developer Section */
+    .developer-section {
+        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid var(--primary-color);
+        border-radius: 2rem;
+        padding: 4rem;
+        text-align: center;
+        margin: 5rem 0;
+        animation: fadeIn 1.5s ease-out;
+    }
+    
+    .developer-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        margin: 0 auto 2rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 6rem;
+        border: 4px solid var(--accent-color);
+        animation: rotate 10s linear infinite;
+    }
+    
+    .developer-name {
+        font-size: 2.5rem;
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+    }
+    
+    .developer-title {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-bottom: 2rem;
+    }
+    
+    .developer-description {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto 3rem auto;
+        line-height: 2;
+    }
+    
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .social-link {
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        text-decoration: none;
+        border-radius: 1rem;
+        border: 2px solid var(--accent-color);
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+    }
+    
+    .social-link:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+    }
+    
+    /* Statistics */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+    
+    .stat-card {
+        background: rgba(16, 185, 129, 0.2);
+        border: 2px solid var(--success-color);
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    .stat-number {
+        font-size: 3rem;
+        color: var(--success-color);
+        margin-bottom: 1rem;
+    }
+    
+    .stat-label {
+        font-size: 1.1rem;
+        color: var(--text-light);
+    }
+    
+    /* Animations */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes fadeOut {
+        from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        to { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-10px);
+        }
+        60% {
+            transform: translateY(-5px);
+        }
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    
+    /* Easter Egg */
+    .easter-egg {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 60px;
+        height: 60px;
+        background: var(--accent-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        cursor: pointer;
+        animation: bounce 2s infinite;
+        z-index: 1000;
+        border: 2px solid var(--primary-color);
+    }
+    
+    .easter-egg:hover {
+        animation: rotate 1s ease-in-out;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .title {
+            font-size: 2.5rem;
+        }
+    
+        .content-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+    
+        .content-card {
+            padding: 2rem;
+        }
+    
+        .card-title {
+            font-size: 1.5rem;
+        }
+    
+        .card-content {
+            font-size: 1rem;
+        }
+    
+        .nav-title {
+            font-size: 1.5rem;
+        }
+    
+        .nav-left {
+            font-size: 1rem;
+            padding: 0.8rem;
+        }
+    
+        .social-links {
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .developer-avatar {
+            width: 100px;
+            height: 100px;
+            font-size: 4rem;
+        }
+    
+        .developer-name {
+            font-size: 2rem;
+        }
+    
+        .developer-section {
+            padding: 2rem;
+        }
+    
+        .powerups-grid {
+            grid-template-columns: 1fr;
+        }
+    
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Quiz Warrior</title>
+    <link rel="stylesheet" href="about.css">
+    <script src="about.js" defer></script>
+</head>
+<body>
+    <nav class="nav-bar">
+        <a class="nav-left" href="index.html">
+            <img width="24" height="24" src="https://img.icons8.com/pixels/32/home--v2.png" alt="home"/>
+            Back to Game
+        </a>
+        <div class="nav-title">About "Quiz Warrior"</div>
+    </nav>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="title">About "Quiz Warrior"</h1>
+            <p class="subtitle">Test your Knowledge! ⚔️</p>
+        </header>
+
+        <div class="content-grid">
+            <!-- Game Rules -->
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="card-icon">📋</div>
+                    <h2 class="card-title">Game Rules</h2>
+                </div>
+                <div class="card-content">
+                    <h3>How to Play</h3>
+                    <ul>
+                        <li>Choose your warrior name and difficulty level</li>
+                        <li>Answer selected-category-related questions within the time limit</li>
+                        <li>Use power-ups strategically to maximize your score</li>
+                        <li>Survive all questions to achieve victory!</li>
+                    </ul>
+
+                    <h3>Lives System</h3>
+                    <ul>
+                        <li>Start with 3 lives ❤️❤️❤️</li>
+                        <li>Lose a life for wrong answers or timeouts</li>
+                        <li>Game ends when all lives are lost</li>
+                        <li>Skip power-up costs 1 life but saves time</li>
+                    </ul>
+
+                    <h3>Timer</h3>
+                    <ul>
+                        <li>30 seconds per question ⏰</li>
+                        <li>Timer turns red in last 5 seconds</li>
+                        <li>Faster answers = time bonus points</li>
+                        <li>Time runs out = automatic wrong answer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scoring System -->
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="card-icon">🏆</div>
+                    <h2 class="card-title">Scoring System</h2>
+                </div>
+                <div class="card-content">
+                    <h3>Base Points by Difficulty</h3>
+                    <table class="scoring-table">
+                        <thead>
+                            <tr>
+                                <th>Difficulty</th>
+                                <th>Base Points</th>
+                                <th>Max Time Bonus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="difficulty-easy">🟢 Easy</td>
+                                <td>10 points</td>
+                                <td>+15 points</td>
+                            </tr>
+                            <tr>
+                                <td class="difficulty-medium">🟡 Medium</td>
+                                <td>20 points</td>
+                                <td>+15 points</td>
+                            </tr>
+                            <tr>
+                                <td class="difficulty-hard">🔴 Hard</td>
+                                <td>30 points</td>
+                                <td>+15 points</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Bonus Calculation</h3>
+                    <ul>
+                        <li>Time Bonus = Remaining Seconds ÷ 2</li>
+                        <li>Total Score = Base Points + Time Bonus</li>
+                        <li>Perfect game with max time = Maximum points!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Developer Section -->
+        <div class="developer-section">
+            <!-- <h4 class="developer-name" style="text-align: left; text-decoration: underline; font-size: 2rem;">Created by: </h4> -->
+            <h5 class="developer-name" style="font-size: 1.5rem;">Dikshya</h5>
+            <h5 class="developer-title">Aspiring Full-Stack Developer</h5>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/dikshya-pahari/" target="_blank" class="social-link">
+                    💼 LinkedIn
+                </a>
+                <a target="_blank" class="social-link">
+                    📧 dikshyapahari977@gmail.com
+                </a>
+            </div>
+        </div>
+
+        <!-- Technology & Credits -->
+        <div class="content-card">
+            <div class="card-header">
+                <div class="card-icon">⚙️</div>
+                <h2 class="card-title">Technology Used</h2>
+            </div>
+            <div class="card-content">
+                <h3>Built With</h3>
+                <ul>
+                    <li>Vanilla JavaScript (ES6+)</li>
+                    <li>HTML5 & CSS3 with modern features</li>
+                    <li>Open Trivia Database API</li>
+                    <li>Google Fonts (Press Start 2P)</li>
+                    <li>Icons8 for beautiful icons</li>
+                </ul>
+
+                <h3>Features</h3>
+                <ul>
+                    <li>Responsive design for all devices</li>
+                    <li>Local high score tracking</li>
+                    <li>Retro gaming aesthetic</li>
+                    <li>Accessible and user-friendly interface</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Easter Egg -->
+    <div class="easter-egg" onclick="triggerEasterEgg()">🎮</div>
+
+    <script>
+        
+        // About page JavaScript functionality
+        document.addEventListener('DOMContentLoaded', function() {
+        initializeAboutPage();
+        });
+        
+        function initializeAboutPage() {
+        setupCardAnimations();
+        setupScrollAnimations();
+        setupEasterEggs();
+        addInteractiveElements();
+        }
+        
+        // Card hover animations
+        function setupCardAnimations() {
+        const cards = document.querySelectorAll('.content-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // Power-up cards animation
+        const powerupCards = document.querySelectorAll('.powerup-card');
+        powerupCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+                this.style.animation = 'none';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.animation = 'pulse 3s infinite';
+            });
+        });
+        }
+        
+        // Scroll-based animations
+        function setupScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all content cards
+        const cards = document.querySelectorAll('.content-card');
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+        
+        // Observe developer section
+        const developerSection = document.querySelector('.developer-section');
+        if (developerSection) {
+            developerSection.style.opacity = '0';
+            observer.observe(developerSection);
+        }
+        }
+        
+        // Easter egg functionality
+        function setupEasterEggs() {
+        // Konami code detection
+        let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+        let konamiProgress = 0;
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode === konamiCode[konamiProgress]) {
+                konamiProgress++;
+                if (konamiProgress === konamiCode.length) {
+                    triggerKonamiCode();
+                    konamiProgress = 0;
+                }
+            } else {
+                konamiProgress = 0;
+            }
+        });
+        
+        // Click counter easter egg
+        let clickCount = 0;
+        document.addEventListener('click', function() {
+            clickCount++;
+            if (clickCount === 30) {
+                showAchievement("🖱️ Click Master! You've clicked 30 times!");
+                clickCount = 0;
+            }
+        });
+        }
+        
+        // Main easter egg function
+        function triggerEasterEgg() {
+        const easterEgg = document.querySelector('.easter-egg');
+        const messages = [
+            "🎉 You found the secret! Keep learning!",
+            "⚔️ True warriors explore everything!",
+            "🚀 Amid Quizzer!",
+            "💡 Curiosity is a your's best friend!",
+            "🏆 Achievement unlocked: Explorer!",
+            "🎮 Smarty Pants you are!",
+            "🔍 Detail-oriented detective!",
+            "🌟 Star student discovered!"
+        ];
+        
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        showMessage(randomMessage);
+        
+        // Animate the easter egg
+        easterEgg.style.animation = 'rotate 1s ease-in-out';
+        setTimeout(() => {
+            easterEgg.style.animation = 'bounce 2s infinite';
+        }, 1000);
+        }
+        
+        // Konami code activation
+        function triggerKonamiCode() {
+        // Rainbow background effect
+        document.body.style.filter = 'hue-rotate(180deg)';
+        document.body.style.transition = 'filter 2s ease';
+        
+        setTimeout(() => {
+            document.body.style.filter = 'none';
+        }, 5000);
+        
+        showMessage('🎮 Konami Code activated! You are a true gamer! 🎮');
+        
+        // Add floating emojis
+        createFloatingEmojis(['🎮', '🕹️', '🎯', '🏆', '⚡', '🌟']);
+        }
+        
+        // Show temporary message
+        function showMessage(message) {
+        const messageEl = document.createElement('div');
+        messageEl.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+            z-index: 2000;
+            border: 2px solid #fbbf24;
+            animation: fadeIn 0.5s ease-out;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 90vw;
+            word-wrap: break-word;
+        `;
+        messageEl.textContent = message;
+        document.body.appendChild(messageEl);
+        
+        // Remove message after 3 seconds
+        setTimeout(() => {
+            messageEl.style.animation = 'fadeOut 0.5s ease-out forwards';
+            setTimeout(() => messageEl.remove(), 500);
+        }, 3000);
+        }
+        
+        // Show achievement notification
+        function showAchievement(message) {
+        const achievementEl = document.createElement('div');
+        achievementEl.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            font-size: 1.2rem;
+            z-index: 2000;
+            border: 2px solid #065f46;
+            animation: slideInRight 0.5s ease-out;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            max-width: 300px;
+        `;
+        achievementEl.innerHTML = `
+            <div style="font-weight: bold; margin-bottom: 0.5rem;">Achievement Unlocked!</div>
+            <div>${message}</div>
+        `;
+        document.body.appendChild(achievementEl);
+        
+        // Remove after 4 seconds
+        setTimeout(() => {
+            achievementEl.style.animation = 'slideOutRight 0.5s ease-out forwards';
+            setTimeout(() => achievementEl.remove(), 500);
+        }, 4000);
+        }
+        
+        // Create floating emojis
+        function createFloatingEmojis(emojis) {
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                const emoji = document.createElement('div');
+                const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                emoji.textContent = randomEmoji;
+                emoji.style.cssText = `
+                    position: fixed;
+                    font-size: 2rem;
+                    z-index: 1500;
+                    pointer-events: none;
+                    left: ${Math.random() * 100}vw;
+                    top: 100vh;
+                    animation: floatUp 3s ease-out forwards;
+                `;
+                
+                document.body.appendChild(emoji);
+                
+                setTimeout(() => emoji.remove(), 3000);
+            }, i * 200);
+        }
+        }
+        
+        // Additional interactive elements
+        function addInteractiveElements() {
+        // Add sparkle effect to title on hover
+        const title = document.querySelector('.title');
+        if (title) {
+            title.addEventListener('mouseenter', function() {
+                this.style.textShadow = '3px 3px 6px rgba(0,0,0,0.5), 0 0 20px rgba(251, 191, 36, 0.8)';
+            });
+            
+            title.addEventListener('mouseleave', function() {
+                this.style.textShadow = '3px 3px 6px rgba(0,0,0,0.5)';
+            });
+        }
+        
+        // Add click effect to social links
+        const socialLinks = document.querySelectorAll('.social-link');
+        socialLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.5);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+        
+        // Add progress bar to show reading progress
+        createReadingProgressBar();
+        }
+        
+        // Reading progress bar
+        function createReadingProgressBar() {
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        `;
+        document.body.appendChild(progressBar);
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = scrollPercentage + '%';
+        });
+        }
+        
+        // Add CSS animations dynamically
+        function addDynamicStyles() {
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+            
+            @keyframes floatUp {
+                from { 
+                    transform: translateY(0) rotate(0deg); 
+                    opacity: 1; 
+                }
+                to { 
+                    transform: translateY(-100vh) rotate(360deg); 
+                    opacity: 0; 
+                }
+            }
+            
+            @keyframes ripple {
+                from { transform: scale(0); opacity: 1; }
+                to { transform: scale(2); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        }
+        
+        // Initialize dynamic styles
+        addDynamicStyles();
+        
+        // Console Easter Egg
+        console.log(`
+        🎮 Quiz Warrior - About Page
+        ⚔️ Welcome, fellow developer!
+        
+        Try these easter eggs:
+        🔍 Click the floating game controller
+        🎯 Use the Konami code: ↑↑↓↓←→←→BA
+        🖱️ Click around the page 30 times
+        🎨 Hover over different elements
+        
+        Built with ❤️ and lots of ☕
+        `);
+        
+        // Add some console styling
+        console.log('%Quiz Warrior', 'color: #fbbf24; font-size: 20px; font-weight: bold;');
+        console.log('%cAbout Page Loaded Successfully!', 'color: #10b981; font-size: 14px;');
+    </script>
+</body>
+</html>
