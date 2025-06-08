@@ -299,7 +299,9 @@ body{
   /* border-radius: 4rem; */
   box-shadow: 15px 16px 5px 5px rgb(90, 89, 89);;
   flex-direction: column;
+  overflow: hidden;
 }
+
 
 .game-header{
   padding: 3rem 2rem 2rem 2rem;

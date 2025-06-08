@@ -203,7 +203,7 @@ function displayQuestion(question, shuffledAnswers){
     const gameControlDisplay = document.getElementsByClassName("game-controls")[0];
     console.log(gameControlDisplay)
     gameControlDisplay.innerHTML = `
-            <button class="power-up-btn" onclick="useSkip()" ${lives <= 1 ? 'disabled' : ''}>
+            <button class="power-up-btn" id="skipBtn" onclick="useSkip()" ${lives <= 1 ? 'disabled' : ''}>
                 ⏭️ Skip (Cost: 1 Life)
             </button>
             <button class="power-up-btn" onclick="useFiftyFifty()" id="fifty-fifty-btn">
@@ -309,6 +309,7 @@ function startTimer() {
 }
 
 function useSkip() {
+    document.getElementById('skipBtn').disabled = true;
     if (lives > 1) {
         lives--;
         clearInterval(timer);
@@ -395,6 +396,8 @@ function saveHighScore(username, score, difficulty, category) {
 }
 
 function restartGame() {
+    gameEndUI = document.getElementsByClassName("game-end")[0];
+    gameEndUI.innerHTML = '';
     currentQuestionIndex = 0;
     username = gameSettings.username;
     score = 0;
@@ -404,6 +407,8 @@ function restartGame() {
 }
 
 function returnToMenu() {
+    gameEndUI = document.getElementsByClassName("game-end")[0];
+    gameEndUI.innerHTML = '';
     const gameInterface = document.getElementsByClassName("game")[0];
     const settingsUI = document.getElementsByClassName("settingsUI")[0];
     
